@@ -1,0 +1,24 @@
+.characterList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  justify-items: center;
+  grid-gap: 0.5rem;
+
+  list-style-type: none;
+
+  padding: 1rem;
+
+  li {
+    display: flex;
+    flex-direction: column;
+
+    figure {
+      width: 100%;
+      max-width: 300px;
+      img {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  }
+}
