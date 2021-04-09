@@ -1,0 +1,49 @@
+.formWrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+
+    legend {
+      font-size: 1.5rem;
+    }
+
+    label {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      max-width: 100px;
+      height: 3rem;
+      padding: 0.25rem;
+      margin: 0.5rem auto;
+
+      font-size: 1.2rem;
+
+      text-align: center;
+    }
+
+    button {
+      background-color: #f9ff69;
+
+      width: 100%;
+      max-width: 300px;
+      height: 3rem;
+      font-size: 1rem;
+
+      margin: 0.5rem auto 0;
+      border: 0;
+      border-radius: 10px;
+
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+}

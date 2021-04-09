@@ -15,7 +15,8 @@ query getLocations($randomLocationsIds: [ID!]!) {
   locationsByIds(ids: $randomLocationsIds) {
     id,
     name,
-    type
+    type,
+    dimension
   }
 }
 `;

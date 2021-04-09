@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
+import { toast } from "react-toastify";
 import { GET_CHARACTERS } from "../../graphql/queries";
-import { useEpisode } from "../../hooks/Episode";
+import { useCharacter } from "../../hooks/useCharacter";
 import { Loading } from "../Loading";
 
 import styles from './styles.module.scss';
@@ -12,7 +13,7 @@ type CharacterInfo = {
 }
 
 export function Characters() {
-  const { randomCharactersIds } = useEpisode();
+  const { randomCharactersIds } = useCharacter();
 
   const { data, loading, error } = useQuery(GET_CHARACTERS, {
     variables: {
@@ -21,7 +22,10 @@ export function Characters() {
   });
 
   if (loading) return <Loading />;
-  if (error) return <p>Error :(</p>;
+  if (error) {
+    toast.error('Error when fetching characters, try again');
+    return <></>;
+  };
   
   return(
     <ul className={styles.characterList}>

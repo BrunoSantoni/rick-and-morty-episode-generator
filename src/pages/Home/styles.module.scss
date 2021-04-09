@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+.homeWrapper {
+  padding: 0.5rem;
+}
+
+.content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+    color: $yellow;
+  }
+}
