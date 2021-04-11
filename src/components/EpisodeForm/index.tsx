@@ -39,6 +39,16 @@ export function EpisodeForm({
     const charactersQuantity = charactersRef.current.value;
     const locationsQuantity = locationsRef.current.value;
 
+    if (Number(charactersQuantity) < 1 || Number(charactersQuantity) > 12) {
+      toast.error('Characters must be within 1 and 12');
+      return;
+    }
+
+    if (Number(locationsQuantity) < 1 || Number(locationsQuantity) > 12) {
+      toast.error('Locations must be within 1 and 12');
+      return;
+    }
+
     const randomLocationIds = getRandomIds(
       maxLocationId,
       Number(locationsQuantity),
