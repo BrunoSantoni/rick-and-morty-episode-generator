@@ -1,14 +1,14 @@
-import { Routes } from './routes';
 import { BrowserRouter } from 'react-router-dom';
 
 import { ApolloProvider } from '@apollo/client/react';
+import { Routes } from './routes';
 import { client } from './services/apolloClient';
 
 import './styles/global.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  return(
+  return (
     <BrowserRouter>
       <ApolloProvider client={client}>
         <Routes />

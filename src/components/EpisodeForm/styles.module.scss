@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .formWrapper {
   width: 100%;
   max-width: 600px;
@@ -6,44 +8,69 @@
   fieldset {
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+
+    background-color: #141b39;
+
+    border-radius: 10px;
+    border-color: $yellow;
 
     legend {
       font-size: 1.5rem;
+      text-align: center;
     }
 
     label {
+      display: flex;
+      flex-direction: column;
       text-align: center;
     }
+  }
+}
 
-    input {
-      width: 100%;
-      max-width: 100px;
-      height: 3rem;
-      padding: 0.25rem;
-      margin: 0.5rem auto;
+.inputGroup {
+  display: flex;
+  margin: 0 auto;
 
-      font-size: 1.2rem;
+  input {
+    width: 100%;
+    max-width: 100px;
+    height: 3rem;
+    padding: 0.25rem;
+    margin: 0.5rem auto;
 
-      text-align: center;
-    }
+    font-size: 1.2rem;
 
-    button {
-      background-color: #f9ff69;
+    text-align: center;
+  }
 
-      width: 100%;
-      max-width: 300px;
-      height: 3rem;
-      font-size: 1rem;
+  button {
+    background-color: transparent;
+    border: 0;
 
-      margin: 0.5rem auto 0;
-      border: 0;
-      border-radius: 10px;
+    margin: 0.25rem;
 
-      transition: filter 0.2s;
+    font-size: 1.5rem;
+    color: #fff;
+    vertical-align: middle;
+  }
+}
 
-      &:hover {
-        filter: brightness(0.9);
-      }
-    }
+.submitButton {
+  background-color: #f9ff69;
+
+  width: 100%;
+  max-width: 300px;
+  height: 3rem;
+  font-size: 1rem;
+
+  margin: 0.5rem auto 0;
+  border: 0;
+  border-radius: 10px;
+
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.9);
   }
 }

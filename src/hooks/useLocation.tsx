@@ -1,6 +1,15 @@
-import { useLazyQuery } from "@apollo/client";
-import { createContext, ReactNode, RefObject, useContext, useEffect, useRef, useState } from "react";
-import { GET_LOCATIONS_RANGE } from "../graphql/queries";
+import { useLazyQuery } from '@apollo/client';
+import {
+  createContext,
+  ReactNode,
+  RefObject,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { toast } from 'react-toastify';
+import { GET_LOCATIONS_RANGE } from '../graphql/queries';
 
 type LocationProviderProps = {
   children: ReactNode;
@@ -13,7 +22,9 @@ type LocationContextData = {
   setRandomLocationIds(ids: number[]): void;
 };
 
-const LocationContext = createContext<LocationContextData>({} as LocationContextData);
+const LocationContext = createContext<LocationContextData>(
+  {} as LocationContextData,
+);
 
 export function LocationProvider({ children }: LocationProviderProps) {
   const locationsRef = useRef<HTMLInputElement>(null);
@@ -21,19 +32,27 @@ export function LocationProvider({ children }: LocationProviderProps) {
   const [maxLocationId, setMaxLocationId] = useState(0);
   const [randomLocationIds, setRandomLocationIds] = useState<number[]>([]);
 
-  const [getLocationsRange, { error, data }] = useLazyQuery(GET_LOCATIONS_RANGE);
+  const [getLocationsRange, { error, data }] = useLazyQuery(
+    GET_LOCATIONS_RANGE,
+  );
 
   useEffect(() => {
     getLocationsRange();
 
-    if(error) console.error(error);
+    if (error) toast.error(error);
 
-    if(data) setMaxLocationId(data.locations.info.count);
+    if (data) setMaxLocationId(data.locations.info.count);
   }, [getLocationsRange, data, error]);
-  
 
-  return(
-    <LocationContext.Provider value={{ locationsRef, maxLocationId, randomLocationIds, setRandomLocationIds }}>
+  return (
+    <LocationContext.Provider
+      value={{
+        locationsRef,
+        maxLocationId,
+        randomLocationIds,
+        setRandomLocationIds,
+      }}
+    >
       {children}
     </LocationContext.Provider>
   );

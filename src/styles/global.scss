@@ -1,5 +1,10 @@
 @import './variables';
 
+@font-face {
+  font-family: 'Rick-and-Morty-Font';
+  src: url(../assets/fonts/get_schwifty.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +32,21 @@ body {
   --webkit-font-smoothing: antialised;
 }
 
-button {
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+
+input, button {
   font-family: 'Poppins', sans-serif;
+}
+
+button {
   cursor: pointer;
 }

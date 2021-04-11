@@ -8,4 +8,4 @@ export function Routes() {
       <Route exact path="/" component={Home} />
     </Switch>
   );
-};
+}

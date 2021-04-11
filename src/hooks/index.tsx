@@ -8,11 +8,9 @@ type AppProviderProps = {
 };
 
 export function AppProvider({ children }: AppProviderProps) {
-  return(
+  return (
     <CharacterProvider>
-      <LocationProvider>
-        {children}
-      </LocationProvider>
+      <LocationProvider>{children}</LocationProvider>
     </CharacterProvider>
   );
 }

@@ -1,9 +1,8 @@
-import { useQuery } from "@apollo/client";
-import { GET_LOCATIONS } from "../../graphql/queries";
-import { useLocation } from "../../hooks/useLocation";
-import { Loading } from "../Loading";
-
+import { useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
+import { GET_LOCATIONS } from '../../graphql/queries';
+import { useLocation } from '../../hooks/useLocation';
+import { Loading } from '../Loading';
 
 import styles from './styles.module.scss';
 
@@ -12,7 +11,7 @@ type LocationInfo = {
   name: string;
   type: string;
   dimension: string;
-}
+};
 
 export function Locations() {
   const { randomLocationIds } = useLocation();
@@ -23,13 +22,13 @@ export function Locations() {
     },
   });
 
-  if (loading) return <Loading />;
+  if (loading) return <Loading screen="locations" />;
   if (error) {
     toast.error('Error when fetching locations, try again');
     return <></>;
-  };
-  
-  return(
+  }
+
+  return (
     <section className={styles.wrapper}>
       <table>
         <thead>
@@ -41,15 +40,15 @@ export function Locations() {
         </thead>
 
         <tbody>
-        {
-          data.locationsByIds.map(({ id, name, type, dimension }: LocationInfo) => (
+          {data.locationsByIds.map(
+            ({ id, name, type, dimension }: LocationInfo) => (
               <tr key={id}>
                 <td>{name}</td>
                 <td>{type}</td>
                 <td>{dimension}</td>
               </tr>
-          ))
-        }
+            ),
+          )}
         </tbody>
       </table>
     </section>

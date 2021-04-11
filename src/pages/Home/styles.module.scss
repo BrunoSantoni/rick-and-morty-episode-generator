@@ -10,8 +10,15 @@
   margin: 0 auto;
 
   h1 {
-    font-size: 2rem;
+    font-family: 'Rick-and-Morty-Font';
+    font-size: 4rem;
     text-align: center;
     color: $yellow;
+
+    margin-bottom: 1rem;
+
+    @media screen and (max-width: 600px) {
+      font-size: 3rem;
+    }
   }
 }
