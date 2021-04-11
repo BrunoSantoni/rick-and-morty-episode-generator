@@ -1,4 +1,4 @@
-import { FormEvent, RefObject } from 'react';
+import { FormEvent, RefObject, useCallback } from 'react';
 import { toast } from 'react-toastify';
 
 import { useCharacter } from '../../hooks/useCharacter';
@@ -23,52 +23,64 @@ export function EpisodeForm({
   } = useCharacter();
   const { locationsRef, maxLocationId, setRandomLocationIds } = useLocation();
 
-  async function getData(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const getData = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    if (!charactersRef.current) {
-      toast.error('charatersRef is null');
-      return;
-    }
+      if (!charactersRef.current) {
+        toast.error('charatersRef is null');
+        return;
+      }
 
-    if (!locationsRef.current) {
-      toast.error('locationsRef is null');
-      return;
-    }
+      if (!locationsRef.current) {
+        toast.error('locationsRef is null');
+        return;
+      }
 
-    const charactersQuantity = charactersRef.current.value;
-    const locationsQuantity = locationsRef.current.value;
+      const charactersQuantity = charactersRef.current.value;
+      const locationsQuantity = locationsRef.current.value;
 
-    if (Number(charactersQuantity) < 1 || Number(charactersQuantity) > 12) {
-      toast.error('Characters must be within 1 and 12');
-      return;
-    }
+      if (Number(charactersQuantity) < 1 || Number(charactersQuantity) > 12) {
+        toast.error('Characters must be within 1 and 12');
+        return;
+      }
 
-    if (Number(locationsQuantity) < 1 || Number(locationsQuantity) > 12) {
-      toast.error('Locations must be within 1 and 12');
-      return;
-    }
+      if (Number(locationsQuantity) < 1 || Number(locationsQuantity) > 12) {
+        toast.error('Locations must be within 1 and 12');
+        return;
+      }
 
-    const randomLocationIds = getRandomIds(
-      maxLocationId,
-      Number(locationsQuantity),
-    );
-    const charactersIds = getRandomIds(
+      const randomLocationIds = getRandomIds(
+        maxLocationId,
+        Number(locationsQuantity),
+      );
+      const charactersIds = getRandomIds(
+        maxCharactersId,
+        Number(charactersQuantity),
+      );
+
+      setRandomLocationIds(randomLocationIds);
+      setRandomCharactersIds(charactersIds);
+
+      if (!isFormAlreadySubmittted) {
+        setIsFormSubmitted(true);
+      }
+
+      toast.success(
+        `Episode generated with ${charactersQuantity} characters and ${locationsQuantity} locations! :)`,
+      );
+    },
+    [
+      charactersRef,
+      isFormAlreadySubmittted,
+      locationsRef,
       maxCharactersId,
-      Number(charactersQuantity),
-    );
-
-    setRandomLocationIds(randomLocationIds);
-    setRandomCharactersIds(charactersIds);
-
-    if (!isFormAlreadySubmittted) {
-      setIsFormSubmitted(true);
-    }
-
-    toast.success(
-      `Episode generated with ${charactersQuantity} characters and ${locationsQuantity} locations! :)`,
-    );
-  }
+      maxLocationId,
+      setIsFormSubmitted,
+      setRandomCharactersIds,
+      setRandomLocationIds,
+    ],
+  );
 
   function handleNumberChange(
     element: RefObject<HTMLInputElement>,
